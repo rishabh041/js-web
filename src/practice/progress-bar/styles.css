@@ -1,0 +1,29 @@
+body {
+  font-family: sans-serif;
+}
+#container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid black;
+  padding: 20px;
+  width: 400px;
+}
+
+#add_progress_bar{
+ color: blue;
+}
+
+#progressBar {
+  width: 300px;
+  background-color: #ddd;
+  margin-bottom: 10px;
+  border: 1px solid black;
+}
+
+#myBar {
+  width: 0;
+  height: 20px;
+  background-color: green;
+}
