@@ -1,0 +1,18 @@
+#persons-container{
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+}
+
+.person-item{
+  display: flex;
+  flex-direction: column;
+  margin: 20px;
+  justify-content: center;
+  align-items: center;
+}
+
+.person-image{
+  width: 200px;
+  height: 200px;
+}
