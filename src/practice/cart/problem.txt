@@ -1,4 +1,4 @@
-1. Build a Cart component using HTML-CSS 
+1. Build a Cart component using HTML-CSS
 2. Add item to cart should be functional
 3. Remove item from the cart should be functional
 4. The total for the items in the cart should be computed correctly Note: Logic needs to be written in vanilla JS

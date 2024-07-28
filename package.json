@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "description": "The JavaScript template",
   "scripts": {
-    "start-progress-bar": "parcel ./src/progress-bar/index.html",
-    "start-cart": "parcel ./src/cart/index.html",
+    "start-interview": "parcel ./src/interview/index.html",
+    "start-practice": "parcel ./src/practice/cart/index.html",
     "build": "parcel build ./src/index.html"
   },
   "devDependencies": {
