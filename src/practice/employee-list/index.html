@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>JavaScript Sandbox</title>
+    <meta charset="UTF-8" />
+    <!-- <link href="./styles.css" rel='stylesheet'  /> -->
+     <style>
+        #container{
+          width: 300px;
+          border: 1px solid #ccc;
+          border-radius: 5px;
+        }
+        #people-heading{
+          margin: 0;
+          padding: 10px;
+          background-color: #ddd;
+        }
+        #people-list{
+          list-style: none;
+          margin: 0;
+          padding: 10px;
+        }
+        .people-item{
+          position: relative;
+          display: flex;
+          align-items: center;
+          padding-top: 10px;
+        }
+        .people-item img{
+          width: 50px;
+          height: 50px;
+          object-fit: cover;
+          margin-right: 5px;
+          /* transition: opacity 0.3s ease, height 0.3s ease; */
+        }
+        .people-item .details{
+          margin-right: 5px;
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          justify-content: center;
+        }
+        .remove-button{
+          border: none;
+          cursor: pointer;
+          background: none;
+          position: absolute;
+          top: 10px;
+          right: 10px;
+        }
+        .connect-button{
+          border: none;
+          cursor: pointer;
+          background: none;
+          color: blue;
+          padding: 0;
+        }
+        #see-more{
+          text-decoration: none;
+          display: block;
+          text-align: right;
+          padding: 10px;
+        }
+     </style>
+  </head>
+
+  <body>
+    <section id="container">
+      <h3 id='people-heading'>People You May Know</h3>
+      <ul id="people-list">
+
+      </ul>
+      <a href="#" id="see-more">See More >></a>
+    </section>
+
+    <script src="./index.js" ></script>
+  </body>
+</html>

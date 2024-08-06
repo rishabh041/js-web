@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search with Suggestions</title>
+    <style>
+        .autoCompleteWrapper {
+            position: relative;
+            width: 300px;
+            margin: 50px auto;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .suggestions-list {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            border: 1px solid #ccc;
+            border-top: none;
+            max-height: 200px;
+            overflow-y: auto;
+            background: #fff;
+            position: absolute;
+            width: 100%;
+            box-sizing: border-box;
+            z-index: 1000;
+        }
+
+        .suggestion-item {
+            padding: 10px;
+            cursor: pointer;
+        }
+
+        .suggestion-item:hover, .suggestion-item.highlighted {
+            background: #f0f0f0;
+        }
+    </style>
+</head>
+<body>
+    <div class="autoCompleteWrapper">
+        <input type="text" class="search-input" id="search-input" placeholder="Search...">
+        <ul class="suggestions-list" id="suggestions-list"></ul>
+    </div>
+
+    <script>
+        const apiUrl = 'https://dummyjson.com/users'; // Replace with your search API endpoint
+
+        const searchInput = document.getElementById('search-input');
+        const suggestionsList = document.getElementById('suggestions-list');
+
+        let debounceTimer;
+        let selectedIndex = -1;
+        let shouldShowSuggestions = false;
+
+        searchInput.addEventListener('input', () => {
+            clearTimeout(debounceTimer);
+            debounceTimer = setTimeout(fetchSuggestions, 300);
+        });
+
+        searchInput.addEventListener('focus', () => {
+            shouldShowSuggestions = true;
+            renderSuggestions();
+        });
+
+        searchInput.addEventListener('blur', () => {
+            shouldShowSuggestions = false;
+            setTimeout(() => {
+                renderSuggestions();
+            }, 100);
+        });
+
+        suggestionsList.addEventListener('mousedown', (event) => {
+            if (event.target.classList.contains('suggestion-item')) {
+                searchInput.value = event.target.textContent;
+                shouldShowSuggestions = false;
+                renderSuggestions();
+            }
+        });
+
+        async function fetchSuggestions() {
+            const query = searchInput.value.trim();
+            if (query === '') {
+                clearSuggestions();
+                return;
+            }
+
+            let res = await fetch(apiUrl);
+            res = (await res.json()).users;
+
+            const filteredSuggestions = res.filter((user) => 
+                user.firstName.toLowerCase().includes(query.toLowerCase())
+            );
+            setSuggestions(filteredSuggestions);
+        }
+
+        function setSuggestions(suggestions) {
+            suggestionsList.innerHTML = '';
+            selectedIndex = -1;
+            if (suggestions.length === 0) {
+                return;
+            }
+
+            suggestions.forEach(suggestion => {
+                const item = document.createElement('li');
+                item.textContent = suggestion.firstName;
+                item.className = 'suggestion-item';
+                suggestionsList.appendChild(item);
+            });
+        }
+
+        function renderSuggestions() {
+            if (shouldShowSuggestions) {
+                suggestionsList.style.display = 'block';
+            } else {
+                suggestionsList.style.display = 'none';
+            }
+        }
+
+        function clearSuggestions() {
+            suggestionsList.innerHTML = '';
+            selectedIndex = -1;
+        }
+    </script>
+</body>
+</html>
