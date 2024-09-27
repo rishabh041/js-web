@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Zepto Interview</title>
+    <meta charset="UTF-8" />
+    <style>
+        ul{
+          list-style: none;
+        }
+        .todo-item{
+          cursor: pointer;
+        }
+        .red{
+          background-color: red;
+        }
+    </style>
+  </head>
+
+  <body>
+    <ul id="todo-list"></ul>
+    <template id="list-template">
+      <li class="list-item">
+        <input class='todo-check' type="checkbox" disabled="true"/>
+        <span class="todo-item"></span>
+      </li>
+    </template>
+    <script src="./index.js"></script>
+  </body>
+</html>
